@@ -28,14 +28,42 @@ export default function CacheLab() {
   return <div className="cache-lab">
     <div className="heading"><span className="eyebrow">LAB 02 · CPU / MEMORY</span><h2>キャッシュメモリの構造と配置方式</h2><p>セット・キャッシュライン・ウェイの関係を図で確認し、アクセスを実行してみよう。</p></div>
     <section className="panel">
-      <h3>まずは3つの用語を図で理解</h3>
-      <p>例：4セット × 2ウェイ。各セットには2本のキャッシュラインがあり、合計8本のラインを持ちます。</p>
-      <div className="cache-concepts">
-        <div className="cache-ram"><strong>メインメモリ（RAM）</strong><small>ブロック：データのまとまり</small>{[0,1,2,3,4,5].map(n=><div key={n} className="cache-block">ブロック {n}<small>アドレス {n*16}〜{n*16+15}</small></div>)}</div>
-        <div className="cache-diagram"><strong>キャッシュメモリ</strong><div className="cache-grid-head"><span>セット</span><span>ウェイ0</span><span>ウェイ1</span></div>{[0,1,2,3].map(n=><div key={n} className="cache-diagram-row"><span>セット{n}</span><div className="cache-line">{n===0?"ブロック0":n===1?"ブロック1":"空き"}</div><div className="cache-line">{n===0?"ブロック4":"空き"}</div></div>)}<small>紫の横1行＝セット／青い1枠＝キャッシュライン／縦の列＝ウェイ</small></div>
+      <h3>図で理解：セット × ウェイ × ラインサイズ</h3>
+      <p>キャッシュを「行と列に並んだ箱」として考えます。<strong>横1行＝セット、縦1列＝ウェイ、交差する1枠＝キャッシュライン</strong>です。</p>
+      <div className="cache-structure">
+        <div className="cache-structure-title"><strong>キャッシュメモリ</strong><span>4セット × 2ウェイ</span></div>
+        <div className="cache-structure-grid">
+          <div className="cache-axis-label">セット番号 ↓</div>
+          <div className="cache-way-heading">ウェイ0 ↓</div>
+          <div className="cache-way-heading">ウェイ1 ↓</div>
+          {[0,1,2,3].map(set=><div className="cache-set-row" key={set}>
+            <div className="cache-set-label">セット{set}</div>
+            {[0,1].map(way=><div className="cache-structure-line" key={way}>
+              <span>キャッシュライン</span><strong>16バイト</strong>
+            </div>)}
+          </div>)}
+        </div>
+        <p className="cache-structure-note">各セットにキャッシュラインが2本。全部で <strong>4 × 2 = 8本</strong> のラインがあります。</p>
       </div>
-      <div className="cache-glossary"><div><strong>セット</strong><p>キャッシュラインをまとめた横1行。アドレスから検索先のセットを決める。</p></div><div><strong>キャッシュライン</strong><p>メモリブロックを格納する1つの枠。図では1枠16バイト。</p></div><div><strong>ウェイ</strong><p>セット内の格納位置。2ウェイなら1セットに2本のラインがある。</p></div></div>
-      <p className="cache-hint">ポイント：ブロックはRAM側のデータ単位。セット・ライン・ウェイはキャッシュ側の構造を表します。</p>
+      <div className="cache-glossary">
+        <div><strong>セット＝行</strong><p>キャッシュラインをまとめたグループ。例では4行。</p></div>
+        <div><strong>ウェイ＝列</strong><p>セット内の格納位置。例では各セットに2本のライン。</p></div>
+        <div><strong>キャッシュライン＝1枠</strong><p>RAMのメモリブロックを入れる箱。1本のサイズは16バイト。</p></div>
+      </div>
+      <div className="cache-capacity">
+        <span>キャッシュのデータ容量</span>
+        <strong>4 セット × 2 ウェイ × 16 バイト = 128 バイト</strong>
+        <small>※タグなどの管理情報を除いたデータ部分の容量</small>
+      </div>
+      <h4>メモリアドレス・ブロックとの関係</h4>
+      <div className="cache-address-flow">
+        <div><small>CPUが指定</small><strong>メモリアドレス 100</strong><span>1バイトの位置</span></div>
+        <span aria-hidden="true">↓</span>
+        <div><small>16バイト単位で区切る</small><strong>メモリブロック 6</strong><span>アドレス96〜111の16バイト</span></div>
+        <span aria-hidden="true">↓</span>
+        <div><small>4セットから選ぶ</small><strong>セット 2</strong><span>ブロック番号6 ÷ 4 の余り＝2</span></div>
+      </div>
+      <p className="cache-hint">メモリアドレス幅は「住所を表すビット数」。ラインサイズは「1枠に入るバイト数」。セット数・ウェイ数は「枠の並べ方」です。メモリブロックはRAM側のデータのまとまりで、キャッシュラインに格納されます。</p>
     </section>
     <section className="panel">
       <h3>第14回：配置方式を切り替えて実験</h3>
