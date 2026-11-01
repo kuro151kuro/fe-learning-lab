@@ -22,3 +22,17 @@
 .cache-history{display:grid;grid-template-columns:repeat(8,minmax(0,1fr));gap:5px;margin:12px 0 20px}.cache-history>div{border-radius:7px;background:#25364d;text-align:center;padding:10px 2px}.cache-history strong,.cache-history small{display:block}.cache-history small{font-size:.58rem;margin-top:5px}.cache-history .cache-hit{background:#19513d}.cache-history .cache-miss{background:#63432b}.cache-history .cache-pending{opacity:.65}
 .cache-simulator h4{margin:0 0 12px}.cache-actions{display:flex;gap:8px;align-items:center;flex-wrap:wrap;margin-top:15px}.cache-actions button{background:#25456c;color:#e7edf8;border:1px solid #507aaf;border-radius:8px;padding:9px 12px}.cache-actions button:disabled{opacity:.4;cursor:not-allowed}.cache-actions span{font-size:.78rem;color:#c6d4e7}
 @media(max-width:650px){.cache-concepts{grid-template-columns:1fr}.cache-glossary{grid-template-columns:1fr}.cache-controls{grid-template-columns:1fr}.cache-diagram-row,.cache-grid-head{grid-template-columns:72px repeat(2,minmax(0,1fr))}.cache-history{gap:3px}.cache-history>div{padding:8px 0}.cache-history small{font-size:.5rem}}
+
+
+/* Explicit set × way × line-size teaching diagram */
+.cache-structure{background:#17283e;border:1px solid #3d5876;border-radius:14px;padding:16px;margin:18px 0}
+.cache-structure-title{display:flex;justify-content:space-between;gap:10px;flex-wrap:wrap;margin-bottom:14px}.cache-structure-title span{color:#b5d5ff;font-size:.85rem}
+.cache-structure-grid{display:grid;grid-template-columns:85px repeat(2,minmax(0,1fr));gap:6px;align-items:stretch}
+.cache-axis-label,.cache-way-heading{text-align:center;color:#b6c8e1;font-size:.78rem;padding:8px 2px}.cache-way-heading{color:#a9d1ff;border-bottom:2px solid #548bc9}
+.cache-set-row{display:contents}.cache-set-label{background:#473458;border:1px solid #8e69a7;border-radius:9px;display:flex;align-items:center;justify-content:center;font-size:.83rem;padding:10px 3px}
+.cache-structure-line{background:#224263;border:1px solid #5994d3;border-radius:9px;min-width:0;min-height:76px;display:flex;flex-direction:column;align-items:center;justify-content:center;gap:6px;padding:8px 3px;text-align:center}
+.cache-structure-line span{font-size:.68rem;color:#c3dcfa}.cache-structure-line strong{font-size:1.03rem;color:#fff}
+.cache-structure-note{font-size:.85rem;line-height:1.7;margin:14px 0 0}
+.cache-capacity{border:1px solid #3e816a;background:#173b35;border-radius:12px;padding:16px;display:flex;flex-direction:column;gap:7px;margin:18px 0}.cache-capacity span{color:#9be3c4;font-size:.8rem}.cache-capacity strong{font-size:clamp(.92rem,2.5vw,1.2rem)}.cache-capacity small{color:#a6c9b9;font-size:.7rem}
+.cache-address-flow{display:flex;flex-direction:column;align-items:center;gap:7px;margin:12px 0 18px}.cache-address-flow>div{width:100%;background:#1d314a;border:1px solid #426b9c;border-radius:10px;padding:13px;display:flex;flex-direction:column;align-items:center;gap:5px;text-align:center}.cache-address-flow>div:last-child{background:#193e37;border-color:#3f9c7b}.cache-address-flow small,.cache-address-flow span{color:#b1c5dc;font-size:.75rem}.cache-address-flow>span{font-size:1.1rem;color:#85b7ef}
+@media(max-width:550px){.cache-structure{padding:10px}.cache-structure-grid{grid-template-columns:66px repeat(2,minmax(0,1fr));gap:4px}.cache-set-label{font-size:.72rem}.cache-structure-line{min-height:70px}.cache-structure-line span{font-size:.58rem}.cache-structure-line strong{font-size:.88rem}}
